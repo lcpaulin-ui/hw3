@@ -167,21 +167,25 @@ template <typename T, typename PComparator>
 void Heap<T,PComparator>::heapify(int loc){
 
   if (loc == data.size() - 1) {return;}
-  int smaller = 2*loc + 1; 
-  if (data.size() -1  < smaller) {return; }
-  // if right child exists 
-  if (data.size() - 1 >= 2*loc + 2 ) {
-    int right = 2*loc + 2; 
-    if ( c_(data[right], data[smaller]) ) {
-      smaller = right; 
+  int pty = loc;
+  // find which child is the best
+  // we have to loop because we have an m-ary heap, not binary
+
+  int parent = loc; 
+  for (int i = 0; i < m_; i++){
+
+    int child = (m_*parent) + i; 
+    if ( pty < data.size() - 1 && c_(data[child], data[pty]) ) {
+      pty = child;
     }
+
   }
 
-  if ( c_(data[loc], data[smaller]) == false  ) {
-
-    swap(loc, smaller); 
-    heapify(smaller); 
-
+  // found the best child. 
+  // compare it with parent 
+  if (pty != parent){
+    swap(pty, parent);
+    heapify(pty); 
   }
 }
 

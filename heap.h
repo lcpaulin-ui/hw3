@@ -138,7 +138,7 @@ void Heap<T,PComparator>::TrickleUp(int loc ) {
 template <typename T, typename PComparator>
 // returns true if heap is empty 
 bool Heap<T,PComparator>::empty() const{
-  return (data.size() == 0); 
+  return data.empty(); 
 }
 
 
@@ -155,7 +155,7 @@ void Heap<T,PComparator>::pop()
     throw std::underflow_error("Empty heap!"); 
   }
 
-  data[0] = data.back();
+  swap(0, data.size() - 1);
   data.pop_back();
   if (empty() == false) 
   {heapify(0); }

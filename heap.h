@@ -67,7 +67,7 @@ private:
   int m_; 
   PComparator c_; 
   /// Add whatever helper functions and data members you need below
-  std::vector<T> heap; 
+  std::vector<T> data; 
   void heapify(int loc); 
   void swap(int loc1, int loc2); 
   void TrickleUp(int loc);
@@ -99,19 +99,19 @@ T const & Heap<T,PComparator>::top() const
   }
   // If we get here we know the heap has at least 1 item
   // Add code to return the top element
-  return heap[0]; 
+  return data[0]; 
 }
 
 // derived from class slides 
 template <typename T, typename PComparator>
 void Heap<T,PComparator>::push(const T& item) {
-  heap.push_back(item);
-  TrickleUp(heap.size() - 1); 
+  data.push_back(item);
+  TrickleUp(data.size() - 1); 
 }
 
 template <typename T, typename PComparator>
 size_t Heap<T,PComparator>::size() const {
-  return heap.size(); 
+  return data.size(); 
 }
 
 // derived from class slides 
@@ -119,7 +119,7 @@ template <typename T, typename PComparator>
 void Heap<T,PComparator>::TrickleUp(int loc ) {
   int parent = (loc - 1) / 2; 
   if (loc == 0) {return;}
-  while (parent >= 0 && ( c_(heap[loc], heap[parent]) ) ){
+  while (parent >= 0 && ( c_(data[loc], data[parent]) ) ){
     swap (loc, parent);
     loc = parent; 
     parent = (loc-1)/2 ;
@@ -129,7 +129,7 @@ void Heap<T,PComparator>::TrickleUp(int loc ) {
 template <typename T, typename PComparator>
 // returns true if heap is empty 
 bool Heap<T,PComparator>::empty() const{
-  return (heap.size() == 0); 
+  return (data.size() == 0); 
 }
 
 
@@ -146,8 +146,8 @@ void Heap<T,PComparator>::pop()
     throw std::underflow_error("Empty heap!"); 
   }
 
-  heap[0] = heap.back();
-  heap.pop_back(); 
+  data[0] = data.back();
+  data.pop_back(); 
   heapify(0); 
 
 }
@@ -156,18 +156,18 @@ void Heap<T,PComparator>::pop()
 template <typename T, typename PComparator>
 void Heap<T,PComparator>::heapify(int loc){
 
-  if (loc == heap.size() - 1) {return;}
+  if (loc == data.size() - 1) {return;}
   int smaller = 2*loc + 1; 
-  if (heap.size() -1  < smaller) {return; }
+  if (data.size() -1  < smaller) {return; }
   // if right child exists 
-  if (heap.size() - 1 >= 2*loc + 2 ) {
+  if (data.size() - 1 >= 2*loc + 2 ) {
     int right = 2*loc + 2; 
-    if ( c_(heap[right], heap[smaller]) ) {
+    if ( c_(data[right], data[smaller]) ) {
       smaller = right; 
     }
   }
 
-  if ( c_(heap[loc], heap[smaller]) == false  ) {
+  if ( c_(data[loc], data[smaller]) == false  ) {
 
     swap(loc, smaller); 
     heapify(smaller); 
@@ -179,9 +179,9 @@ void Heap<T,PComparator>::heapify(int loc){
 template <typename T, typename PComparator>
 void Heap<T,PComparator>::swap(int loc1, int loc2){
 
-  T temp = heap[loc1]; 
-  heap[loc1] = heap[loc2]; 
-  heap[loc2] = temp; 
+  T temp = data[loc1]; 
+  data[loc1] = data[loc2]; 
+  data[loc2] = temp; 
 }
 
 
@@ -189,7 +189,7 @@ template <typename T, typename PComparator>
 void Heap<T,PComparator>::print() {
 
   for (size_t i = 0; i < heap.size() - 1; i++){
-    std::cout << heap[i] << " "; 
+    std::cout << data[i] << " "; 
   }
 }
 

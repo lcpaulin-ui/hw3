@@ -131,7 +131,6 @@ void Heap<T,PComparator>::TrickleUp(int loc) {
     break; 
    }
   }
-
   return; 
 }
 
@@ -174,7 +173,7 @@ void Heap<T,PComparator>::heapify(int loc){
   int parent = loc; 
   for (int i = 0; i < m_; i++){
 
-    int child = (m_*parent) + i; 
+    int child = (m_*parent) + i + 1; 
     if ( pty < data.size() - 1 && c_(data[child], data[pty]) ) {
       pty = child;
     }

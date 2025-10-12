@@ -11,19 +11,21 @@ int main () {
 
     Heap<int> h1; 
 
-    for (int i = 0; i < 10; i++){
-        int num = rand () % 100; 
-        cout << num << " "; 
-        h1.push(num); 
-    }
+    // for (int i = 0; i < 10; i++){
+    //     int num = rand () % 100; 
+    //     cout << num << " "; 
+    //     h1.push(num); 
+    // }
 
-    cout << endl;
-    h1.print(); 
+    // cout << endl;
+    // h1.print(); 
     
+    // h1.pop(); 
+    // cout << endl;
+    h1.push(4);
     h1.pop(); 
-    cout << endl;
 
-    cout << "heap" << endl; 
-    h1.print(); 
+    // cout << "heap" << endl; 
+    //h1.print(); 
     return 0; 
 }

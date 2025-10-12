@@ -62,7 +62,7 @@ public:
   size_t size() const;
 
 
-  void print(); 
+  // void print(); 
 
 private:
 
@@ -149,8 +149,9 @@ void Heap<T,PComparator>::pop()
   }
 
   data[0] = data.back();
-  data.pop_back(); 
-  heapify(0); 
+  data.pop_back();
+  if (empty() == false) 
+  {heapify(0); }
 
 }
 
@@ -187,13 +188,13 @@ void Heap<T,PComparator>::swap(int loc1, int loc2){
 }
 
 
-template <typename T, typename PComparator>
-void Heap<T,PComparator>::print() {
+// template <typename T, typename PComparator>
+// void Heap<T,PComparator>::print() {
 
-  for (size_t i = 0; i < data.size() - 1; i++){
-    std::cout << data[i] << " "; 
-  }
-}
+//   for (size_t i = 0; i < data.size() - 1; i++){
+//     std::cout << data[i] << " "; 
+//   }
+// }
 
 
 #endif

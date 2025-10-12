@@ -53,7 +53,7 @@ void Stack<T>::pop(){
     if (Stack<T>::size() == 0 ){
         throw std::underflow_error("empty list"); 
     }
-    else (std::vector<T>::pop()); 
+    else (std::vector<T>::pop_back()); 
 }
 
 template <typename T>

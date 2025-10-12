@@ -174,7 +174,7 @@ void Heap<T,PComparator>::heapify(int loc){
   for (int i = 0; i < m_; ++i){
 
     int child = (m_*parent) + (i + 1); 
-    if (child >= data.size() - 1 ) {break; }
+    if (child >= data.size() ) {break; }
     if (c_(data[child], data[pty]) ) {
       pty = child;
     }

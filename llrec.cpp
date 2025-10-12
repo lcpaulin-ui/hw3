@@ -37,16 +37,17 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot) {
 
   // take my ptr out of og list aka move head ptr to next pointer 
   Node* curr = head;
-  curr->next = nullptr; 
-  head = head->next; 
+  head = head->next;
+  curr->next = nullptr;  
+
+  //llpivot(head, smaller, larger, pivot);
+  llpivot(head, smaller, larger, pivot);
 
   if (curr->val > pivot){
     addNode(curr, larger);
   }
   else {
     addNode(curr, smaller);
-  }
-
-  return llpivot(head, smaller, larger, pivot);
+  } 
 
 }

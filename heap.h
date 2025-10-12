@@ -148,14 +148,14 @@ bool Heap<T,PComparator>::empty() const{
 template <typename T, typename PComparator>
 void Heap<T,PComparator>::pop()
 {
-  if(empty()){
+  if(data.empty()){
     // ================================
     // throw the appropriate exception
     // ================================
     throw std::underflow_error("Empty heap!"); 
   }
 
-  swap(0, data.size() - 1);
+  data[0] = data.back();
   data.pop_back();
   if (empty() == false) 
   {heapify(0); }

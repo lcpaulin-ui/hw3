@@ -154,7 +154,7 @@ void Heap<T,PComparator>::pop()
     throw std::underflow_error("Empty heap!"); 
   }
 
-  swap(0, data.size() - 1); 
+  data[0] = data.back(); 
   data.pop_back();
   if (empty() == false) 
   {heapify(0); }
@@ -166,15 +166,15 @@ template <typename T, typename PComparator>
 void Heap<T,PComparator>::heapify(int loc){
 
   if (loc == data.size() - 1) {return;}
-  if (loc == 0 ) {return; }
   int pty = loc;
   // find which child is the best
   // we have to loop because we have an m-ary heap, not binary
 
   int parent = loc; 
-  for (int i = 0; i < m_; i++){
+  for (int i = 0; i < m_; ++i){
 
-    int child = (m_*parent) + i + 1; 
+    int child = (m_*parent) + (i + 1); 
+    if (child > data.size() - 1 ) {break; }
     if ( pty < data.size() - 1 && c_(data[child], data[pty]) ) {
       pty = child;
     }

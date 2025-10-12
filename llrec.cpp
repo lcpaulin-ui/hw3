@@ -30,6 +30,7 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot) {
   // WRITE YOUR CODE HERE 
   // empty case
   if (head == NULL){
+    smaller = nullptr, larger = nullptr;
     return;
   }
 

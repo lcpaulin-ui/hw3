@@ -59,15 +59,28 @@ public:
    */
   size_t size() const;
 
+
+  void print(); 
+
 private:
+
+  int m_; 
+  PComparator c_; 
   /// Add whatever helper functions and data members you need below
-
-
-
-
+  std::vector<T> heap; 
+  void heapify(int loc); 
+  void swap(int loc1, int loc2); 
+  void TrickleUp(int loc);
 };
 
 // Add implementation of member functions here
+
+template <typename T, typename PComparator>
+Heap<T,PComparator>::Heap(int m, PComparator c) : m_(m), c_(c) {} 
+
+
+template <typename T, typename PComparator>
+Heap<T,PComparator>::~Heap() {}
 
 
 // We will start top() for you to handle the case of 
@@ -81,15 +94,44 @@ T const & Heap<T,PComparator>::top() const
     // ================================
     // throw the appropriate exception
     // ================================
-
+    throw std::underflow_error("Empty heap!"); 
 
   }
   // If we get here we know the heap has at least 1 item
   // Add code to return the top element
-
-
-
+  return heap[0]; 
 }
+
+// derived from class slides 
+template <typename T, typename PComparator>
+void Heap<T,PComparator>::push(const T& item) {
+  heap.push_back(item);
+  TrickleUp(heap.size() - 1); 
+}
+
+template <typename T, typename PComparator>
+size_t Heap<T,PComparator>::size() const {
+  return heap.size(); 
+}
+
+// derived from class slides 
+template <typename T, typename PComparator>
+void Heap<T,PComparator>::TrickleUp(int loc ) {
+  int parent = (loc - 1) / 2; 
+  if (loc == 0) {return;}
+  while (parent >= 0 && ( c_(heap[loc], heap[parent]) ) ){
+    swap (loc, parent);
+    loc = parent; 
+    parent = (loc-1)/2 ;
+  }
+}
+
+template <typename T, typename PComparator>
+// returns true if heap is empty 
+bool Heap<T,PComparator>::empty() const{
+  return (heap.size() == 0); 
+}
+
 
 
 // We will start pop() for you to handle the case of 
@@ -101,15 +143,55 @@ void Heap<T,PComparator>::pop()
     // ================================
     // throw the appropriate exception
     // ================================
-
-
+    throw std::underflow_error("Empty heap!"); 
   }
 
-
+  heap[0] = heap.back();
+  heap.pop_back(); 
+  heapify(0); 
 
 }
 
+// derived from class slides  and my class ntoes 
+template <typename T, typename PComparator>
+void Heap<T,PComparator>::heapify(int loc){
+
+  if (loc == heap.size() - 1) {return;}
+  int smaller = 2*loc + 1; 
+  if (heap.size() -1  < smaller) {return; }
+  // if right child exists 
+  if (heap.size() - 1 >= 2*loc + 2 ) {
+    int right = 2*loc + 2; 
+    if ( c_(heap[right], heap[smaller]) ) {
+      smaller = right; 
+    }
+  }
+
+  if ( c_(heap[loc], heap[smaller]) == false  ) {
+
+    swap(loc, smaller); 
+    heapify(smaller); 
+
+  }
+}
+
+
+template <typename T, typename PComparator>
+void Heap<T,PComparator>::swap(int loc1, int loc2){
+
+  T temp = heap[loc1]; 
+  heap[loc1] = heap[loc2]; 
+  heap[loc2] = temp; 
+}
+
+
+template <typename T, typename PComparator>
+void Heap<T,PComparator>::print() {
+
+  for (size_t i = 0; i < heap.size() - 1; i++){
+    std::cout << heap[i] << " "; 
+  }
+}
 
 
 #endif
-

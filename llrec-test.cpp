@@ -68,7 +68,15 @@ void dealloc(Node* head)
 // -----------------------------------------------
 
 
-
+class Even {
+    public: 
+    bool operator()(const int num){
+        if (num % 2 == 0){
+            return true; 
+        }
+        return false;
+    }
+};
 
 
 int main(int argc, char* argv[])
@@ -86,10 +94,9 @@ int main(int argc, char* argv[])
     print(head);
 
     // Test out your linked list code
-
-
-
-    
+    Even ev;  
+    Node* list = llfilter(head, ev); 
+    print(list);
     return 0;
 
 }

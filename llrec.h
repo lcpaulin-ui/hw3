@@ -15,6 +15,7 @@ struct Node
     Node(int v, Node* n) : val(v), next(n) {}
 };
 
+void addNode(Node*& add, Node*& list); // own helper function 
 
 /**
  * Given a linked list pointed to by head, creates two lists
@@ -83,8 +84,23 @@ Node* llfilter(Node* head, Comp pred)
     //*********************************************
     // Provide your implementation below
     //*********************************************
+    if (head == NULL){
+        return head;
+    }
+    else {
+        Node* right = llfilter(head->next, pred); 
+        head->next = right; 
 
+        if(!(pred(head->val))){
 
+            Node* temp = head;
+            right = head->next; 
+            delete temp; 
+        }
+        else {
+            right = head;  
+        } 
+        return right; 
+    }
 }
-
 #endif

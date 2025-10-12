@@ -118,10 +118,10 @@ size_t Heap<T,PComparator>::size() const {
 
 // derived from class slides 
 template <typename T, typename PComparator>
-void Heap<T,PComparator>::TrickleUp(int loc ) {
+void Heap<T,PComparator>::TrickleUp(int loc) {
 
   while (loc > 0) {
-    int parent = (loc - 1) / 2; 
+    int parent = (loc - 1) / m_; 
     if (c_(data[loc], data[parent]) )
    { swap(loc, parent);
     loc = parent; 

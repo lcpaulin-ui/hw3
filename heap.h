@@ -120,7 +120,7 @@ size_t Heap<T,PComparator>::size() const {
 template <typename T, typename PComparator>
 void Heap<T,PComparator>::TrickleUp(int loc) {
 
-  while (loc > 0) {
+  while (loc >= 0) {
     int parent = (loc - 1) / m_; 
     if (c_(data[loc], data[parent]) )
    { swap(loc, parent);

@@ -4,7 +4,7 @@
 // Provide your implementation of llpivot below
 //*********************************************
 
-void addNode(Node*& add, Node*& list){ 
+void addNode(Node* add, Node*& list){ 
 
     // empty list case 
     if (list == NULL){
@@ -21,6 +21,7 @@ void addNode(Node*& add, Node*& list){
   
     else {
       addNode(add, list->next);
+      return; 
     }
 }
 
@@ -41,6 +42,7 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot) {
   curr->next = nullptr;  
 
   //llpivot(head, smaller, larger, pivot);
+  llpivot(head, smaller, larger, pivot);
 
   if (curr->val > pivot){
     addNode(curr, larger);
@@ -48,7 +50,5 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot) {
   else {
     addNode(curr, smaller);
   } 
-
-  llpivot(head, smaller, larger, pivot);
 
 }

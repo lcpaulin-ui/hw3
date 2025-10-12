@@ -29,6 +29,7 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot) {
   /* Add code here */
   // WRITE YOUR CODE HERE 
   // empty case
+  // smaller = nullptr, larger = nullptr;
   if (head == NULL){
     smaller = nullptr, larger = nullptr;
     return;
@@ -36,6 +37,7 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot) {
 
   // take my ptr out of og list aka move head ptr to next pointer 
   Node* curr = head;
+  curr->next = nullptr; 
   head = head->next; 
 
   if (curr->val > pivot){

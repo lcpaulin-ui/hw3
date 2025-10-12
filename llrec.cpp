@@ -7,31 +7,23 @@
 void addNode(Node* add, Node*& list){ 
 
     // empty list case 
-    // if (list == NULL){
-    //   list = add;
-    //   list->next = NULL; 
-    // }
-
-    // else {
-    //  addNode(add, list->next)
-    // }
-
-    add->next = list; 
-    list = add; 
+    if (list == NULL){
+      list = add;
+      list->next = NULL; 
+    }
   
     // got to the end case 
-    // else if (list->next == NULL){
-    //   list->next = add;
-    //   add->next = NULL;
-    //   return; 
-    // }
+    else if (list->next == NULL){
+      list->next = add;
+      add->next = NULL;
+    }
+
+    addNode(add, list->next); 
   
     // else {
     //   addNode(add, list->next);
     //   return; 
     // }
-
-
 }
 
 void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot) {

@@ -15,7 +15,7 @@ struct Node
     Node(int v, Node* n) : val(v), next(n) {}
 };
 
-void addNode(Node*& add, Node*& list); // own helper function 
+void addNode(Node* add, Node*& list); // own helper function 
 
 /**
  * Given a linked list pointed to by head, creates two lists

@@ -7,15 +7,15 @@
 void addNode(Node*& add, Node*& list){ 
 
     // empty list case 
-    if (list == nullptr){
+    if (list == NULL){
       list = add;
-      list->next = nullptr; 
+      list->next = NULL; 
     }
   
     // got to the end case 
-    else if (list->next == nullptr){
+    else if (list->next == NULL){
       list->next = add;
-      add->next = nullptr;
+      add->next = NULL;
       return; 
     }
   
@@ -29,7 +29,7 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot) {
   /* Add code here */
   // WRITE YOUR CODE HERE 
   // empty case
-  if (head == nullptr){
+  if (head == NULL){
     return;
   }
 

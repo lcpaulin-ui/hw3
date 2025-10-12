@@ -131,6 +131,8 @@ void Heap<T,PComparator>::TrickleUp(int loc ) {
     break; 
    }
   }
+
+  return; 
 }
 
 template <typename T, typename PComparator>

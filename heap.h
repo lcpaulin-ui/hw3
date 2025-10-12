@@ -166,6 +166,7 @@ template <typename T, typename PComparator>
 void Heap<T,PComparator>::heapify(int loc){
 
   if (loc == data.size() - 1) {return;}
+  if (loc == 0 ) {return; }
   int pty = loc;
   // find which child is the best
   // we have to loop because we have an m-ary heap, not binary

@@ -6,24 +6,30 @@
 
 void addNode(Node* add, Node*& list){ 
 
-    // empty list case 
-    if (list == NULL){
-      list = add;
-      list->next = NULL; 
-    }
-  
-    // got to the end case 
-    else if (list->next == NULL){
-      list->next = add;
-      add->next = NULL;
-    }
-
-    addNode(add, list->next); 
-  
-    // else {
-    //   addNode(add, list->next);
-    //   return; 
+    // // empty list case 
+    // if (list == NULL){
+    //   list = add;
+    //   list->next = NULL; 
     // }
+  
+    // // got to the end case 
+    // else if (list->next == NULL){
+    //   list->next = add;
+    //   add->next = NULL;
+    // }
+
+    // addNode(add, list->next); 
+  
+    // // else {
+    // //   addNode(add, list->next);
+    // //   return; 
+    // // }
+
+    // we are going backwards so i can just add it to the end of the list
+    // going from last nodes in list to first
+    // just put at end, others will come 
+    add->next = list; 
+    list = add; 
 }
 
 void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot) {
@@ -43,16 +49,16 @@ void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot) {
   curr->next = nullptr;  
 
   //llpivot(head, smaller, larger, pivot);
-  //llpivot(head, smaller, larger, pivot);
+  llpivot(head, smaller, larger, pivot);
 
   if (curr->val > pivot){
-    addNode(curr, larger);
+    addNode(curr, larger); 
   }
   else {
     addNode(curr, smaller);
   } 
 
-  llpivot(head, smaller, larger, pivot);
+  //llpivot(head, smaller, larger, pivot);
 
 
 }

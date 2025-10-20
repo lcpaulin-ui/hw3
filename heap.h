@@ -171,11 +171,12 @@ void Heap<T,PComparator>::heapify(int loc){
   // we have to loop because we have an m-ary heap, not binary
 
   int parent = loc; 
+  // can't asusme that i have a binary tree so loop through the m number og childs and find the best one 
   for (int i = 0; i < m_; ++i){
 
     int child = (m_*parent) + (i + 1); 
     if (child >= data.size() ) {break; }
-    if (c_(data[child], data[pty]) ) {
+    if (c_(data[child], data[pty]) ) { // if this one is the best.swap it 
       pty = child;
     }
 
